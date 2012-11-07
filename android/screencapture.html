@@ -1,0 +1,26 @@
+<!DOCTYPE html><html><head><title>Android Development Tutorial</title><!-- code syntax highlight --><link rel="stylesheet" href="css/sunburst.css"><link rel="stylesheet" href="css/bootstrap.min.css" media="screen"><link rel="stylesheet" href="css/main.css" media="screen"><link rel="stylesheet" href="stylesheets/style.css"><script src="js/prettify.js"></script><script src="js/jquery-1.8.2.min.js"></script><script src="js/bootstrap.min.js"></script><script src="js/util.js"></script><script src="js/main.js"></script></head><body onload="prettyPrint()"><h1>Screen Capture of Android UI 手機螢幕截圖</h1><description>如用寫程式把手機上的使用者界面(View)截成圖檔</description><h3>說明</h3><p>Android所有的UI都以View為基礎類別，本文說明如何利用View的buildDrawingCache函式可以截取手機上任何一個View成一個圖檔。</p><h3>程式範例</h3><p>in source code of Activity (src)</p><pre class="prettyprint lang-java">protected File CardScreenCapture() {
+    if( cardRoot != null ) {       		
+        cardRoot.setDrawingCacheEnabled(true);
+        cardRoot.buildDrawingCache(true);
+        Bitmap bitmap = Bitmap.createBitmap(cardRoot.getDrawingCache());
+        cardRoot.setDrawingCacheEnabled(false);
+        
+    String filename = String.format(&quot;card_%s.jpg&quot;, UUID.randomUUID());
+        File file = new File(Environment.getExternalStorageDirectory(), filename);
+        try 
+        {
+            FileOutputStream ostream = new FileOutputStream(file);
+            bitmap.compress(CompressFormat.JPEG, 70, ostream);
+            ostream.close();
+            bitmap.recycle();
+            return file;
+        } 
+        catch (Exception e) 
+        {
+            e.printStackTrace();
+            return null;
+        }
+    }
+    return null;
+}
+</pre><h3>參考連結</h3><a href="http://developer.android.com/reference/android/view/View.html">Android View官方網頁</a><br><a href="http://developer.android.com/reference/android/view/View.html#buildDrawingCache()">Android View.buildDrawingCache()介紹</a></body></html>

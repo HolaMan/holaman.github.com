@@ -1,0 +1,25 @@
+<!DOCTYPE html><html><head><title>Android Development Tutorial</title><!-- code syntax highlight --><link rel="stylesheet" href="css/sunburst.css"><link rel="stylesheet" href="css/bootstrap.min.css" media="screen"><link rel="stylesheet" href="css/main.css" media="screen"><link rel="stylesheet" href="stylesheets/style.css"><script src="js/prettify.js"></script><script src="js/jquery-1.8.2.min.js"></script><script src="js/bootstrap.min.js"></script><script src="js/util.js"></script><script src="js/main.js"></script></head><body onload="prettyPrint()"><h1>Gallery Photo Picker 選取照片集</h1><description>利用Photo Intent讓使用者去選擇一張已經存在的照片。</description><h3>說明</h3><p>利用Picker Intent讓使用者選擇一張照片集裡的照片
+。 並解譯原始的連結到真正的檔案路徑並讀出成Bitmap以利使用。    </p><h3>程式範例</h3><p>in source code of Activity (src)</p><pre class="prettyprint lang-java">public static int GALLERY_PICK_REQUEST = 10001;
+
+    public void onClickGallery(View view) {
+    Intent intent = new Intent(Intent.ACTION_PICK);
+    intent.setType(&quot;image/*&quot;);
+    startActivityForResult(intent, GALLERY_PICK_REQUEST);
+}
+
+protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+
+    if (requestCode == GALLERY_PICK_REQUEST &amp;&amp; resultCode == RESULT_OK ) {
+        Uri selectedImageUri = data.getData();
+        try {           
+            BitmapFactory.Options options = new BitmapFactory.Options();
+            options.inSampleSize = 4;
+            Bitmap photo = BitmapFactory.decodeFile(getPath(selectedImageUri), options);
+            imageView.setImageBitmap(photo);
+        }
+        catch(OutOfMemoryError e) {
+            e.printStackTrace();
+            System.gc();
+        }
+    }
+}</pre><h3>參考連結</h3><a href="http://www.helloandroid.com/tutorials/gallery-intent-tutorial">Gallery Intent Tutorial</a></body></html>
