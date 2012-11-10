@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="zh-TW" encoding="utf-8">
+  <head>
+    <title>Android Development Tutorial</title><!-- code syntax highlight -->
+    <link rel="stylesheet" href="css/sunburst.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css" media="screen">
+    <link rel="stylesheet" href="css/main.css" media="screen">
+    <link rel="stylesheet" href="stylesheets/style.css">
+    <script src="js/prettify.js"></script>
+    <script src="js/jquery-1.8.2.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/util.js"></script>
+    <script src="js/main.js"></script>
+  </head>
+  <body onload="prettyPrint()">
+    <ul class="nav nav-tabs">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="source.html">原始碼下載</a></li>
+    </ul>
+    <h1>Dialog 對話視窗</h1>
+    <div class="alert alert-info">使用Android的對話視窗</div>
+    <h3>說明</h3>
+    <p class="well">使用Android的對話視窗</p><br>
+    <p>[圖： Toast訊息]  <a href="http://1.bp.blogspot.com/_mqGOLgf6YwY/S2pLNAhs1kI/AAAAAAAADVs/4sBme0P_UUo/s400/android_dialog.png">資料來源</a></p><br><img src="http://1.bp.blogspot.com/_mqGOLgf6YwY/S2pLNAhs1kI/AAAAAAAADVs/4sBme0P_UUo/s400/android_dialog.png">
+    <h3>程式範例</h3>
+    <p>in source code of Activity (src)</p>
+    <pre class="prettyprint lang-java">import android.app.AlertDialog;
+import android.content.DialogInterface;
+
+public void showDialog() {
+    final AlertDialog alertDialog = getAlertDialog(&quot;這是對話框&quot;,&quot;請選擇...&quot;);
+    alertDialog.show();
+}
+
+private AlertDialog getAlertDialog(String title,String message){
+    Builder builder = new AlertDialog.Builder(MainActivity.this); //產生一個Builder物件                
+    builder.setTitle(title); //設定Dialog的標題
+    builder.setMessage(message); //設定Dialog的內容        
+    builder.setPositiveButton(&quot;OK&quot;, new DialogInterface.OnClickListener() { 
+        @Override
+        public void onClick(DialogInterface dialog, int which) {
+            // do something you want when user click OK
+        }
+    });        
+    builder.setNegativeButton(&quot;Cancel&quot;, new DialogInterface.OnClickListener() {
+        @Override
+        public void onClick(DialogInterface dialog, int which) {
+            // do something you want when user click cancel
+        }
+    });
+    return builder.create();
+}
+</pre><br>
+    <h3>參考連結</h3><a href="http://cooking-java.blogspot.tw/2010/02/android-dialog.html">Android筆記 - 對話框</a><br>
+  </body>
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="zh-TW" encoding="utf-8">
+  <head>
+    <title>Android Development Tutorial</title><!-- code syntax highlight -->
+    <link rel="stylesheet" href="css/sunburst.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css" media="screen">
+    <link rel="stylesheet" href="css/main.css" media="screen">
+    <link rel="stylesheet" href="stylesheets/style.css">
+    <script src="js/prettify.js"></script>
+    <script src="js/jquery-1.8.2.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/util.js"></script>
+    <script src="js/main.js"></script>
+  </head>
+  <body onload="prettyPrint()">
+    <ul class="nav nav-tabs">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="source.html">原始碼下載</a></li>
+    </ul>
+    <h1>Intent 連結Activity的Intent</h1>
+    <div class="alert alert-info">了解Android Intent的概念以及如何在Android Activities之間轉換。</div>
+    <h3>說明</h3>
+    <p class="well">Android Activity是UI的流程或是狀態的單位，那如何在狀態之間轉換呢？ 又如何在狀態之間傳遞資料呢？ 答案就是神奇的「Intent」。</p>
+    <Android>的App很多，每一隻手機裡安裝的程式也不一樣，如何因應不同的狀況來連結Activity呢？ Intent可以是很具體到某一個特用的App裡的某一個Activity (像是Facebook App發佈到自己的牆上)，或是一個很抽象的概念，我要分享一個圖檔給所有支援的App….這時候可能DropBox, Gmail, …數十個已安裝的App程式都支援的話，就會跳出給使用者選擇。</Android>
+    <div class="alert alert-info">直接指定要到的Activity (顯性Intent)，可以放資料給下一個intent</div>
+    <pre class="prettyprint lang-java">import android.content.Intent;
+
+public void shareText(View view) {
+    Intent i = new Intent(this, ActivityTwo.class);
+    i.putExtra(&quot;CardIndex&quot;, 3);
+    i.putExtra(&quot;Value2&quot;, &quot;This value two ActivityTwo&quot;); 
+    startActivity(i);
+}
+</pre>
+    <div class="alert alert-info">如何收取資料呢？</div>
+    <pre class="prettyprint lang-java">import android.content.Intent;
+
+public void onCreate(Bundle savedInstanceState) {
+    int cardIndex = this.getIntent().getIntExtra(&quot;CardIndex&quot;, 0);
+    // do something related to cardIndex
+    // ...etc
+}
+</pre>
+    <div class="alert alert-info">只指定資料與動作 (隱性的Intent)，像是指定瀏攬某一網址</div>
+    <pre class="prettyprint lang-java">import android.content.Intent;
+
+public void shareText(View view) {
+    Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(&quot;http://www.google.com&quot;)); 
+    startActivity(intent);
+}
+</pre>
+    <div class="alert alert-info">分享一段文字到其它app</div>
+    <pre class="prettyprint lang-java">import android.content.Intent;
+
+public void shareText(View view) {
+    Intent intent = new Intent(Intent.ACTION_SEND);
+    intent.setType(&quot;text/plain&quot;);
+    intent.putExtra(Intent.EXTRA_TEXT, &quot;這是要分享的字串。&quot;);
+    startActivity(Intent.createChooser(intent, &quot;Share Text by using...&quot;));
+}</pre>
+    <div class="alert alert-info">如何取得分享出去的字串呢？</div>
+    <pre class="prettyprint lang-java">import android.content.Intent;
+
+public void onCreate(Bundle savedInstanceState) {
+    Bundle extras = getIntent().getExtras();
+    String value1 = extras.getString(Intent.EXTRA_TEXT);
+    if (value1 != null) {
+      // Do something with the data
+    } 
+}</pre>
+    <h3>參考連結</h3><a href="http://developer.android.com/reference/android/content/Intent.html">Android官方連結</a><br><a href="http://www.jollen.org/blog/2009/07/jollen-android-programming-26.html">強大的Intent機制</a><br><a href="http://www.vogella.com/articles/AndroidIntent/article.htm">Android Intents - Tutorial</a>
+  </body>
+</html>

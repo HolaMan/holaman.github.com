@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="zh-TW" encoding="utf-8">
+  <head>
+    <title>Android Development Tutorial</title><!-- code syntax highlight -->
+    <link rel="stylesheet" href="css/sunburst.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css" media="screen">
+    <link rel="stylesheet" href="css/main.css" media="screen">
+    <link rel="stylesheet" href="stylesheets/style.css">
+    <script src="js/prettify.js"></script>
+    <script src="js/jquery-1.8.2.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/util.js"></script>
+    <script src="js/main.js"></script>
+  </head>
+  <body onload="prettyPrint()">
+    <ul class="nav nav-tabs">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="source.html">原始碼下載</a></li>
+    </ul>
+    <h1>Vibrator 震動</h1>
+    <div class="alert alert-info">透過API控制手機的震動</div>
+    <h3>說明</h3>
+    <p class="well">透過API控制手機的震動</p>
+    <h3>程式範例</h3>
+    <div class="alert alert-info">in source code of Activity (/src)</div>
+    <pre class="prettyprint lang-java">import android.os.Vibrator;
+import android.app.Service;
+
+public void vibrate() {
+    Vibrator myVibrator = (Vibrator) getApplication().getSystemService(Service.VIBRATOR_SERVICE);
+    myVibrator.vibrate(500); // 震動半秒
+}
+</pre>
+    <div class="alert alert-info">記得把vibrate的權限設定在AndroidManifest.xml裡</div>
+    <pre class="prettyprint lang-xml">&lt;uses-permission android:name=&quot;android.permission.VIBRATE&quot; /&gt;</pre>
+    <h3>參考連結</h3><a href="http://developer.android.com/reference/android/os/Vibrator.html">Android Vibrator官方網站</a><br><a href="http://cooking-java.blogspot.tw/2010/04/android-vibrator.html">Android學習筆記 - 震動</a>
+  </body>
+</html>

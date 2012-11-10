@@ -1,4 +1,29 @@
-<!DOCTYPE html><html><head><title>Android Development Tutorial</title><!-- code syntax highlight --><link rel="stylesheet" href="css/sunburst.css"><link rel="stylesheet" href="css/bootstrap.min.css" media="screen"><link rel="stylesheet" href="css/main.css" media="screen"><link rel="stylesheet" href="stylesheets/style.css"><script src="js/prettify.js"></script><script src="js/jquery-1.8.2.min.js"></script><script src="js/bootstrap.min.js"></script><script src="js/util.js"></script><script src="js/main.js"></script></head><body onload="prettyPrint()"><h1>Take Photo from Camera 照相功能</h1><description>利用Android照相的功能照相，並取得當下的相片路徑。</description><h3>說明</h3><p>利用Camera的Intent，呼叫手機裡內建的照相功能，當使用者照完相之後，傳回使用者照相的路徑並加以使用。</p><h3>程式範例</h3><p>in source code of Activity (src)</p><pre class="prettyprint lang-java">public static int CAMERA_REQUEST = 10000;
+<!DOCTYPE html>
+<html lang="zh-TW" encoding="utf-8">
+  <head>
+    <title>Android Development Tutorial</title><!-- code syntax highlight -->
+    <link rel="stylesheet" href="css/sunburst.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css" media="screen">
+    <link rel="stylesheet" href="css/main.css" media="screen">
+    <link rel="stylesheet" href="stylesheets/style.css">
+    <script src="js/prettify.js"></script>
+    <script src="js/jquery-1.8.2.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/util.js"></script>
+    <script src="js/main.js"></script>
+  </head>
+  <body onload="prettyPrint()">
+    <ul class="nav nav-tabs">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="source.html">原始碼下載</a></li>
+    </ul>
+    <h1>Take Photo from Camera 照相功能</h1>
+    <div class="alert alert-info">利用Android照相的功能照相，並取得當下的相片路徑。</div>
+    <h3>說明</h3>
+    <p class="well">利用Camera的Intent，呼叫手機裡內建的照相功能，當使用者照完相之後，傳回使用者照相的路徑並加以使用。</p>
+    <h3>程式範例</h3>
+    <p>in source code of Activity (src)</p>
+    <pre class="prettyprint lang-java">public static int CAMERA_REQUEST = 10000;
 public void onClickCamera(View view) {
         Intent cameraIntent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE); 
         startActivityForResult(cameraIntent, CAMERA_REQUEST); 
@@ -10,4 +35,9 @@ protected void onActivityResult(int requestCode, int resultCode, Intent data) {
             imageView.setImageBitmap(photo);                        
         }
 }
-</pre><br><p>In AndroidManifest.xml</p><pre class="prettyprint lang-xml">&lt;uses-permission android:name=&quot;android.permission.CAMERA&quot; /&gt;</pre><h3>參考連結</h3><a href="http://developer.android.com/guide/topics/media/camera.html">Android Camera官方網頁</a><a href="http://blog.ericsk.org/archives/1388">[Android] 從相機拿照片的方式</a><a href="http://blog.kenyang.net/2010/10/android-camera.html">android 取得camera的照片</a></body></html>
+</pre>
+    <!-- br-->
+    <!-- include code/camera_permission.code.jade  -->
+    <h3>參考連結</h3><a href="http://developer.android.com/guide/topics/media/camera.html">Android Camera官方網頁</a><a href="http://blog.ericsk.org/archives/1388">[Android] 從相機拿照片的方式</a><a href="http://blog.kenyang.net/2010/10/android-camera.html">android 取得camera的照片</a>
+  </body>
+</html>

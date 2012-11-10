@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="zh-TW" encoding="utf-8">
+  <head>
+    <title>Android Development Tutorial</title><!-- code syntax highlight -->
+    <link rel="stylesheet" href="css/sunburst.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css" media="screen">
+    <link rel="stylesheet" href="css/main.css" media="screen">
+    <link rel="stylesheet" href="stylesheets/style.css">
+    <script src="js/prettify.js"></script>
+    <script src="js/jquery-1.8.2.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/util.js"></script>
+    <script src="js/main.js"></script>
+  </head>
+  <body onload="prettyPrint()">
+    <ul class="nav nav-tabs">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="source.html">原始碼下載</a></li>
+    </ul>
+    <h1>View & Activity</h1>
+    <div class="alert alert-info">View與Activity的關係以及相關的程式範例</div>
+    <h3>說明</h3>
+    <p class="well">
+      Activity是一個流程的單位概念，可以指定一個View來呈現給使用者看。<br/><br/>
+      View是視覺元件的單位，他可以又繼續擁有許多子元件 (依然是View)，形成一顆視覺樹 (View Collection)。 <br/><br/>
+      Activity可以藉由<code>setContentView</code>來將這顆視覺樹與Activity作連結。 <br/><br/>
+      另外如果在Activity想要找出視覺樹裡特定的元件，可以用<code>findViewById</code>，傳入元件的id來尋找視覺元件。
+    </p>
+    <h3>程式範例</h3>
+    <p>in source code of Activity (src)</p>
+    <pre class="prettyprint lang-java">public class ToastActivity extends Activity {
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_toast);        
+        
+        Button button4 = (Button)this.findViewById(R.id.button4);
+        button4.setOnClickListener(new OnClickListener() {
+    @Override
+      public void onClick(View v) {
+        Toast.makeText( ToastActivity.this, &quot;按鈕被按了....&quot;, Toast.LENGTH_LONG).show();
+      }});
+    }
+}
+
+</pre>
+  </body>
+</html>

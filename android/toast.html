@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="zh-TW" encoding="utf-8">
+  <head>
+    <title>Android Development Tutorial</title><!-- code syntax highlight -->
+    <link rel="stylesheet" href="css/sunburst.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css" media="screen">
+    <link rel="stylesheet" href="css/main.css" media="screen">
+    <link rel="stylesheet" href="stylesheets/style.css">
+    <script src="js/prettify.js"></script>
+    <script src="js/jquery-1.8.2.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/util.js"></script>
+    <script src="js/main.js"></script>
+  </head>
+  <body onload="prettyPrint()">
+    <ul class="nav nav-tabs">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="source.html">原始碼下載</a></li>
+    </ul>
+    <h1>Toast 提示訊息</h1>
+    <div class="alert alert-info">使用Toast提示訊息</div>
+    <h3>說明</h3>
+    <p class="well">使用Toast提示訊息</p><br>
+    <p>[圖： Toast訊息]  <a href="http://4.bp.blogspot.com/_mqGOLgf6YwY/S2jzZRPAw9I/AAAAAAAADVk/uWdKijtJHIA/s400/android_toast.png">資料來源</a></p><br><img src="http://4.bp.blogspot.com/_mqGOLgf6YwY/S2jzZRPAw9I/AAAAAAAADVk/uWdKijtJHIA/s400/android_toast.png">
+    <h3>程式範例</h3>
+    <p>in source code of Activity (src)</p>
+    <pre class="prettyprint lang-java">import android.widget.Toast;
+
+public void showToastShort(View view) {
+    Toast.makeText(view.getContext(), &quot;這是Toast訊息......&quot;, Toast.LENGTH_LONG).show();
+}
+</pre><br>
+    <h3>參考連結</h3><a href="http://cooking-java.blogspot.tw/2010/02/android-toast.html">Android筆記 - 顯示快顯</a><br>
+  </body>
+</html>

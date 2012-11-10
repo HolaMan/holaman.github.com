@@ -1,5 +1,35 @@
-<!DOCTYPE html><html><head><title>Android Development Tutorial</title><!-- code syntax highlight --><link rel="stylesheet" href="css/sunburst.css"><link rel="stylesheet" href="css/bootstrap.min.css" media="screen"><link rel="stylesheet" href="css/main.css" media="screen"><link rel="stylesheet" href="stylesheets/style.css"><script src="js/prettify.js"></script><script src="js/jquery-1.8.2.min.js"></script><script src="js/bootstrap.min.js"></script><script src="js/util.js"></script><script src="js/main.js"></script></head><body onload="prettyPrint()"><h1>Splash Screen 登入畫面製作</h1><description>利用Activity製作手機App登入畫面。</description><h3>說明</h3><p>使用Activity作一個登入畫面，通常登入畫面會展示手機的Logo還有公司名稱，也趁著這畫面讓使用者等待，讓程式可以多載入其它資料。
-等載入完畢之後，再跳入主畫面，即另一個Activity。</p><h3>程式範例</h3><p>in source code (src)</p><pre class="prettyprint lang-java">public class SplashScreen extends Activity {
+<!DOCTYPE html>
+<html lang="zh-TW" encoding="utf-8">
+  <head>
+    <title>Android Development Tutorial</title><!-- code syntax highlight -->
+    <link rel="stylesheet" href="css/sunburst.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css" media="screen">
+    <link rel="stylesheet" href="css/main.css" media="screen">
+    <link rel="stylesheet" href="stylesheets/style.css">
+    <script src="js/prettify.js"></script>
+    <script src="js/jquery-1.8.2.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/util.js"></script>
+    <script src="js/main.js"></script>
+  </head>
+  <body onload="prettyPrint()">
+    <ul class="nav nav-tabs">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="source.html">原始碼下載</a></li>
+    </ul>
+    <h1>Splash Screen 登入畫面製作</h1>
+    <div class="alert alert-info">利用Activity製作手機App登入畫面。</div>
+    <h3>說明</h3>
+    <p class="well">
+      使用Activity作一個登入畫面，通常登入畫面會展示手機的Logo還有公司名稱，也趁著這畫面讓使用者等待，讓程式可以多載入其它資料。
+      等載入完畢之後，再跳入主畫面，即另一個Activity。
+    </p>
+    <h3>程式範例</h3>
+    <div class="alert alert-info">這是一個完整的SplashScreen Activity實作 (/src)</div>
+    <pre class="prettyprint lang-java">import android.os.Handler;
+import android.view.Window;
+
+public class SplashScreen extends Activity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         // remove title
@@ -19,13 +49,18 @@
                 Intent intent = new Intent(SplashScreen.this, SelectCardActivity.class);
                 SplashScreen.this.startActivity(intent); 
             } 
-        }, 100); // time in milliseconds (1 second = 1000 milliseconds)
+        }, 2000); // time in milliseconds (1 second = 1000 milliseconds)
     }    
-}</pre><br><p>In AndroidManifest.xml</p><pre class="prettyprint lang-xml">&lt;activity
+}</pre><br>
+    <div class="alert alert-info">In AndroidManifest.xml，將此Activity設成Launcher，所以使用者可以在程式集看到。</div>
+    <pre class="prettyprint lang-xml">&lt;activity
     android:name=&quot;.SplashScreen&quot;
     android:label=&quot;@string/title_activity_splash_screen&quot; &gt;
     &lt;intent-filter&gt;
     &lt;action android:name=&quot;android.intent.action.MAIN&quot; /&gt;
     &lt;category android:name=&quot;android.intent.category.LAUNCHER&quot; /&gt;
     &lt;/intent-filter&gt;
-&lt;/activity&gt;</pre><h3>參考連結</h3><a href="http://myandroidsolutions.blogspot.tw/2012/06/android-simple-splash-screen.html">Android Simple Splash Screen</a><br><a href="http://www.droidnova.com/how-to-create-a-splash-screen,561.html">How to: Create a splash screen</a><br></body></html>
+&lt;/activity&gt;</pre>
+    <h3>參考連結</h3><a href="http://myandroidsolutions.blogspot.tw/2012/06/android-simple-splash-screen.html">Android Simple Splash Screen</a><br><a href="http://www.droidnova.com/how-to-create-a-splash-screen,561.html">How to: Create a splash screen</a><br>
+  </body>
+</html>
